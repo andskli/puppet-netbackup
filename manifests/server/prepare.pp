@@ -1,4 +1,4 @@
-class netbackup::prepare {
+class netbackup::server::prepare {
 
   # START Pre-checks
   include limits
