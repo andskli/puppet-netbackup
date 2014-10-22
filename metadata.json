@@ -1,0 +1,17 @@
+{
+  "name": "ondmagi-netbackup",
+  "version": "0.1.0",
+  "author": "ondmagi",
+  "summary": "NetBackup via puppet, client and server",
+  "license": "Apache 2.0",
+  "source": "https://github.com/ondmagi/puppet-netbackup.git",
+  "project_page": "https://github.com/ondmagi/puppet-netbackup",
+  "issues_url": "https://github.com/ondmagi/puppet-netbackup/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"saz/limits","version_requirement":">= 2.1.0"},
+    {"name":"thias/sysctl","version_requirement":">= 1.0.0"},
+    {"name":"spiette/selinux","version_requirement":">= 0.5.4"}
+  ]
+}
+

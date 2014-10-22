@@ -1,0 +1,23 @@
+#!/usr/bin/expect
+set timeout -1
+spawn /usr/openv/netbackup/bin/install_bp
+
+expect "Enter license key:"
+send "MY_LICENSE_KEY\n"
+
+expect "Do you want to add additional license keys now?"
+send "n\n"
+
+expect "NetBackup server nam of this machine?"
+send "y\n"
+
+expect "so backups and restores can be initiated?"
+send "y\n"
+
+expect "Enter the OpsCenter server"
+send "\n"
+
+expect "Participate in the NetBackup Product Improvement Program?"
+send "n\n"
+
+expect eof
