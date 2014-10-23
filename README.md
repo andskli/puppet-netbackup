@@ -1,79 +1,56 @@
 # netbackup
 
-#### Table of Contents
-
 1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with netbackup](#setup)
-    * [What netbackup affects](#what-netbackup-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with netbackup](#beginning-with-netbackup)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+    * [Client](#client)
+    * [Server](#server)
+2. [Usage - Configuration options and additional functionality](#usage)
+3. [Limitations - OS compatibility, etc.](#limitations)
+4. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+Puppet + NetBackup
 
-## Module Description
+## Classes
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+The netbackup module provides the following classes of interest
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+- `netbackup::client::install` - used for client installation
+- `netbackup::server::prepare` - used for master/media server preparation. Applies best practices for tuning such as changing sysctl and ulimit parameters.
 
-## Setup
+### Client
 
-### What netbackup affects
+Installs the client as neccessary on UNIX/Linux hosts, unfortunately using 
+quite ugly expect script.
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+The `netbackup::client::install` class is used for installation of NetBackup 
+client, from a filesystem (NFS!). It requires two parameters:
 
-### Setup Requirements **OPTIONAL**
+- `installer_path` - full path to the install binary provided from NetBackup DVD
+- `netbackup_version` - run install unless a client of this version is already installed
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+### Server
 
-### Beginning with netbackup
-
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+Only handles preparation for NetBackup Master/media installation for now, see `netbackup::server::prepare`.
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+Sample definition:
 
-## Reference
+    class { 'netbackup::client::install':
+        installer_path    => '/path/to_nfs_share/NetBackup_7.6.0.1_CLIENTS2/install',
+        netbackup_version => '7.6.0.1',
+    }
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Only tested on Linux for now.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Standard GitHub workflow, i.e.
 
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+1. Fork/branch
+2. Send PR
+3. Wait for response
