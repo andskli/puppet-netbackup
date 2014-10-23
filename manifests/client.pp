@@ -6,6 +6,9 @@ class netbackup::client (
   $service_enabled   = true,
 ) {
 
+  class { 'netbackup::client::install':
+  }
+
   service { 'netbackup':
     name          => 'netbackup',
     ensure        => $service_enabled,
