@@ -1,0 +1,21 @@
+#!/usr/bin/expect
+set timeout -1
+
+spawn <%= @installer_path %>
+
+expect "Do you wish to continue?"
+send "y\n"
+
+expect "Do you want to install the NetBackup client software for this client?"
+send "y\n"
+
+expect "Enter the name of the NetBackup server"
+send "<%= @netbackup_master %>\n"
+
+expect "name of the NetBackup client?"
+send "n\n"
+
+expect "Enter the name of this NetBackup client"
+send "<%= @netbackup_clientname %>\n"
+
+expect eof
