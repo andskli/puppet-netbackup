@@ -25,3 +25,26 @@ describe 'netbackup::client' do
   end
 
 end
+
+describe 'netbackup::client::install' do
+
+  let(:params) {
+    {
+      :installer    => '/tmp/install_netbackup_client.expect',
+      :version      => '7.6.0.1',
+      :masterserver => 'netbackup.xyz.com',
+      :clientname   => 'spectest.xyz.com',
+    }
+  }
+
+  it do
+    should contain_file('install_netbackup_client.expect').with({
+      'path'    => '/tmp/install_netbackup_client.expect',
+      'owner'   => 'root',
+      'group'   => 'root',
+      'mode'    => '0744',
+      'content' => /netbackup.xyz.com/,
+    })
+  end
+
+end
