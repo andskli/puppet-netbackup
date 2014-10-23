@@ -1,8 +1,8 @@
 class netbackup::client::install (
-  $installer_path       = undef,
-  $netbackup_version    = undef,
-  $netbackup_master     = "netbackup.${::domain}",
-  $netbackup_clientname = "${::fqdn}",
+  $installer          = $netbackup::client::installer,
+  $version            = $netbackup::client::version,
+  $masterserver       = $netbackup::client::masterserver,
+  $clientname         = $netbackup::client::clientname,
 ){
 
   file { 'install_netbackup_client.expect':
@@ -20,7 +20,7 @@ class netbackup::client::install (
     command  => 'expect /tmp/install_netbackup_client.expect',
     path     => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
     require  => [Package['expect'], File['install_netbackup_client.expect']],
-    unless   => "grep ${netbackup_version} /usr/openv/netbackup/bin/version",
+    unless   => "grep ${version} /usr/openv/netbackup/bin/version",
   }
 
 }
