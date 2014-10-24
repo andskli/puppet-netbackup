@@ -1,21 +1,26 @@
 class netbackup::client (
   $installer         = undef,
   $version           = undef,
-  $masterserver      = "netbackup.${::domain}",
   $clientname        = "${::fqdn}",
+  $masterserver      = "netbackup.${::domain}",
+  $mediaservers      = undef,
   $service_enabled   = true,
 ) {
 
   class { 'netbackup::client::install': }
 
   file { 'bp.conf':
+    ensure        => file,
     path          => '/usr/openv/netbackup/bp.conf',
-    ensure        => 'file',
+    owner         => 'root',
+    group         => 'root',
+    mode          => '0644',
+    content       => template('netbackup/bp.conf.erb'),
   }
 
   service { 'netbackup':
-    name          => 'netbackup',
     ensure        => $service_enabled,
+    name          => 'netbackup',
     hasrestart    => false,
     hasstatus     => false,
     pattern       => 'bpcd',
