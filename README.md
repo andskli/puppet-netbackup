@@ -1,15 +1,19 @@
 # netbackup
 
-1. [Overview](#overview)
-    * [Client](#client)
-    * [Server](#server)
-2. [Usage - Configuration options and additional functionality](#usage)
-3. [Limitations - OS compatibility, etc.](#limitations)
-4. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
-Puppet + NetBackup
+Puppet + NetBackup. Currently in development, contributions are welcome. See [TODO](#todo) 
+
+## TODO
+
+- Server installation of master/media
+- Tuning/parameterizing of master/media
+- Policy creation/modification via puppet?
+- Server facts
+- Client facts
+- Client upgrades
+- ??
 
 ## Classes
 
@@ -30,12 +34,10 @@ installer located at `installer` (should preferably be an NFS mount).
 - `installer` - full path to the install binary provided from NetBackup DVD
 - `version` - run install unless a client of this version is already installed
 - `masterserver` - which masterserver should be entered upon installation of client
+- `mediaservers` - mediaservers which has access to a client
+- `service_enabled` - start netbackup, true or false?
 
-### Server
-
-Only handles preparation for NetBackup Master/media installation for now, see `netbackup::server::prepare`.
-
-## Usage
+#### Example usage
 
 Sample definition:
 
@@ -44,12 +46,23 @@ Sample definition:
         version         => '7.6.0.1',
         service_enabled => true,
         masterserver    => 'netbackup.xyz.com',
+        mediaservers    => ['mediasrv1.xyz.com', 'mediasrv2.xyz.com'],
     }
+
+
+### Server
+
+Only handles preparation for NetBackup Master/media installation for now, see `netbackup::server::prepare`.
+
+#### Example usage
+
+	class { 'netbackup::server::prepare': }
+
 
 
 ## Limitations
 
-Only tested on Linux for now.
+Only tested on Linux (CentOS/Ubuntu) for now.
 
 ## Development
 
