@@ -16,6 +16,7 @@ class netbackup::client::install (
   package { 'expect':
     ensure => installed,
   }
+
   exec { 'run-netbackup-install':
     command  => 'expect /tmp/install_netbackup_client.expect',
     path     => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
