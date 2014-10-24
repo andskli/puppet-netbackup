@@ -6,7 +6,11 @@ class netbackup::client (
   $service_enabled   = true,
 ) {
 
-  class { 'netbackup::client::install':
+  class { 'netbackup::client::install': }
+
+  file { 'bp.conf':
+    path          => '/usr/openv/netbackup/bp.conf',
+    ensure        => 'file',
   }
 
   service { 'netbackup':
@@ -14,7 +18,8 @@ class netbackup::client (
     ensure        => $service_enabled,
     hasrestart    => false,
     hasstatus     => false,
-    pattern       => "bpcd",
+    pattern       => 'bpcd',
+    require       => Class['netbackup::client::install'],
   }
 
 }
