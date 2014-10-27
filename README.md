@@ -1,4 +1,4 @@
-# netbackup
+# puppet-netbackup
 
 
 ## Overview
