@@ -9,6 +9,10 @@ class netbackup::client (
 
   class { 'netbackup::client::install': }
 
+  file { '/usr/openv/netbackup':
+    ensure        => directory,
+  }
+
   file { 'bp.conf':
     ensure        => file,
     path          => '/usr/openv/netbackup/bp.conf',
@@ -16,6 +20,7 @@ class netbackup::client (
     group         => 'root',
     mode          => '0644',
     content       => template('netbackup/bp.conf.erb'),
+    require       => File['/usr/openv/netbackup'],
   }
 
   service { 'netbackup':
