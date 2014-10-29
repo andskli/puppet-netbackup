@@ -9,9 +9,11 @@ script:
     - "bundle exec rake lint"
     - "bundle exec rake spec SPEC_OPTS='--format documentation'"
 env:
-    - PUPPET_VERSION="~> 3.5"
-    - PUPPET_VERSION="~> 3.7.2"
+    - PUPPET_VERSION=3.3
+    - PUPPET_VERSION=3.7.2
 matrix:
-    allow_failures:
+    #    allow_failures:
+    #   - rvm: ruby-head
+    exclude:
         - rvm: ruby-head
 gemfile: Gemfile
