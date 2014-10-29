@@ -6,7 +6,7 @@ rvm:
 script:
     - "bundle exec rake spec"
 env:
-    - PUPPET_VERSION=">= 3.5"
+    - PUPPET_VERSION="3.5"
 matrix:
     allow_failures:
         - rvm: ruby-head
