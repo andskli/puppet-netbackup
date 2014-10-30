@@ -3,7 +3,7 @@
 
 ## Overview
 
-Puppet + NetBackup. Currently in development, contributions are welcome. See [TODO](#todo) 
+Puppet + NetBackup. Currently in development, contributions are welcome. See [TODO](#todo)
 
 ## TODO
 
@@ -21,14 +21,15 @@ The netbackup module provides the following classes of interest
 
 - `netbackup::client` - used for client installation and management
 - `netbackup::server::prepare` - used for master/media server preparation. Applies best practices for tuning such as changing sysctl and ulimit parameters.
+- `netbackup::server::tune` - applying values to the "touch files" used in netbackup for buffer settings etc, reasonable values set by default
 
 ### Client
 
-Installs the client as neccessary on UNIX/Linux hosts, unfortunately using 
+Installs the client as neccessary on UNIX/Linux hosts, unfortunately using
 quite ugly expect script.
 
-The `netbackup::client` class is used for management of NetBackup 
-client. If no NetBackup client is present, it will try to run the NetBackup 
+The `netbackup::client` class is used for management of NetBackup
+client. If no NetBackup client is present, it will try to run the NetBackup
 installer located at `installer` (should preferably be an NFS mount).
 
 - `installer` - full path to the install binary provided from NetBackup DVD
