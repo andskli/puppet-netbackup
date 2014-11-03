@@ -60,6 +60,11 @@ Only handles preparation for NetBackup Master/media installation for now, see `n
 	class { 'netbackup::server::prepare': }
 
 
+## Facts
+
+- `netbackup_client_name` - returns the client name from `/usr/openv/netbackup/bin/nbgetconfig`
+- `netbackup_serverlist` - returns a list of servers retreived from `/usr/openv/netbackup/bin/nbgetconfig`
+
 
 ## Limitations
 
