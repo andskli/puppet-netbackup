@@ -12,3 +12,23 @@ Facter.add('netbackup_serverlist') do
     servers
   end
 end
+
+# @todo Ugly code?
+Facter.add('netbackup_version') do
+  setcode do
+    nbu_version = nil
+
+    if File.exist?('/usr/openv/netbackup/bin/version')
+      File.open('/usr/openv/netbackup/bin/version', 'r') do |file|
+        file.each do |line|
+          if line.split.first =~ /^NetBackup.*/
+            nbu_version = line.split.last
+          end
+        end
+      end
+    end
+
+    nbu_version
+
+  end
+end

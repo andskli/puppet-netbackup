@@ -64,6 +64,7 @@ Only handles preparation for NetBackup Master/media installation for now, see `n
 
 - `netbackup_client_name` - returns the client name from `/usr/openv/netbackup/bin/nbgetconfig`
 - `netbackup_serverlist` - returns a list of servers retreived from `/usr/openv/netbackup/bin/nbgetconfig`
+- `netbackup_version` - returns a string containing version information found in `/usr/openv/netbackup/bin/version`, `nil` if the file is not found or it does not contain a version string
 
 
 ## Limitations
