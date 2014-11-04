@@ -17,3 +17,8 @@ matrix:
     exclude:
         - rvm: ruby-head
 gemfile: Gemfile
+# build only these
+branches:
+    only:
+        - master
+
