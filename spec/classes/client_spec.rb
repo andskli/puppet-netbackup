@@ -11,6 +11,12 @@ describe 'netbackup::client' do
     }
   }
 
+  let(:facts) {
+    {
+      :netbackup_version => nil,
+    }
+  }
+
   it do
     should contain_class("netbackup::client::install").with({
       'installer'    => '/tmp/installer.expect',
@@ -22,6 +28,46 @@ describe 'netbackup::client' do
       'name'   => 'netbackup',
       'ensure' => 'true',
     })
+  end
+
+  context 'with same version already installed' do
+
+    let(:facts) {
+      {
+        :netbackup_version => '7.6.0.1',
+      }
+    }
+
+    let(:params) {
+      {
+        :version => '7.6.0.1',
+      }
+    }
+
+    it do
+      should_not contain_class("netbackup::client::install")
+    end
+
+  end
+
+  context 'with newer version already installed' do
+
+    let(:facts) {
+      {
+        :netbackup_version => '7.6.0.3',
+      }
+    }
+
+    let(:params) {
+      {
+        :version => '7.6.0.1',
+      }
+    }
+
+    it do
+      should_not contain_class("netbackup::client::install")
+    end
+
   end
 
 end
