@@ -30,13 +30,13 @@ class netbackup::client (
     require => File['/usr/openv/netbackup'],
   }
 
-  service { 'netbackup':
+  service { 'netbackup-client':
     ensure     => $service_enabled,
     name       => 'netbackup',
     hasrestart => false,
     hasstatus  => false,
     pattern    => 'bpcd',
-    onlyif     => 'test -f /etc/init.d/netbackup',
+    require    => File["/etc/init.d/netbackup"],
   }
 
 }
