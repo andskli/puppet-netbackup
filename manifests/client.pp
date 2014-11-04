@@ -17,7 +17,7 @@ class netbackup::client (
   }
 
   file { '/usr/openv/netbackup':
-    ensure        => directory,
+    ensure => directory,
   }
 
   file { 'bp.conf':
@@ -36,7 +36,7 @@ class netbackup::client (
     hasrestart => false,
     hasstatus  => false,
     pattern    => 'bpcd',
-    require    => Class['netbackup::client::install'],
+    onlyif     => 'test -f /etc/init.d/netbackup',
   }
 
 }
