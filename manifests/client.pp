@@ -7,13 +7,12 @@ class netbackup::client (
   $service_enabled   = true,
 ) {
 
-  #class { 'netbackup::client::install': }
-  if $::netbackup_version == undef {
-    include netbackup::client::install
-  }
-
   if versioncmp($version, $::netbackup_version) < 1 {
     notice("Installed version ${::netbackup_version} newer or equal to ${version}, not installing")
+  }
+  if versioncmp($version, $::netbackup_version) == 1 {
+    notice ("Found NetBackup version: ${::netbackup_version}, have newer ${version} which I'll install using class netbackup::client::install")
+    class { 'netbackup::client::install': }
   }
 
   file { '/usr/openv/netbackup':
@@ -30,13 +29,15 @@ class netbackup::client (
     require => File['/usr/openv/netbackup'],
   }
 
-  service { 'netbackup-client':
-    ensure     => $service_enabled,
-    name       => 'netbackup',
-    hasrestart => false,
-    hasstatus  => false,
-    pattern    => 'bpcd',
-    require    => File["/etc/init.d/netbackup"],
+  # Only define netbackup init service if netbackup_version fact is set
+  if $::netbackup_version != undef {
+    service { 'netbackup-client':
+      ensure     => $service_enabled,
+      name       => 'netbackup',
+      hasrestart => false,
+      hasstatus  => false,
+      pattern    => 'bpcd',
+    }
   }
 
 }
