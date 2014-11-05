@@ -34,9 +34,4 @@ class netbackup::server::prepare {
   }
   # END Pre-checks
 
-  # Required packages
-  package { ['expect', 'libstdc++', 'gzip']:
-    ensure          => installed,
-  }
-
 }
