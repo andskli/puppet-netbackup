@@ -2,7 +2,7 @@ class netbackup::client (
   $installer         = undef,
   $version           = undef,
   $clientname        = $::fqdn,
-  $masterserver      = "netbackup.${::domain}",
+  $masterserver      = undef,
   $mediaservers      = undef,
   $service_enabled   = true,
 ) {
