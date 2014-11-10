@@ -9,7 +9,7 @@ describe 'netbackup::client' do
       :mediaservers    => ['mediaserver1.xyz.com', 'mediaserver2.xyz.com'],
       :clientname      => 'spectest.xyz.com',
       :service_enabled => true,
-      :excludes        => ['/tmp'],
+      :excludes        => ['/tmp', '/other/path'],
     }
   }
 
@@ -26,6 +26,7 @@ describe 'netbackup::client' do
     })
     should contain_file("exclude_list").with({
       'content' => /\/tmp/,
+      'content' => /\/other\/path/,
     })
   end
 
