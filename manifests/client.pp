@@ -5,6 +5,7 @@ class netbackup::client (
   $masterserver      = undef,
   $mediaservers      = undef,
   $service_enabled   = true,
+  $excludes          = undef,
 ) {
 
   if versioncmp($version, $::netbackup_version) < 1 {
@@ -37,6 +38,17 @@ class netbackup::client (
       hasrestart => false,
       hasstatus  => false,
       pattern    => 'bpcd',
+    }
+  }
+
+  if $excludes != undef {
+    file { 'exclude_list':
+      ensure  => file,
+      path    => '/usr/openv/netbackup/exclude_list',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('netbackup/exclude_list.erb'),
     }
   }
 

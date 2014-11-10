@@ -37,6 +37,7 @@ installer located at `installer` (should preferably be an NFS mount).
 - `masterserver` - which masterserver should be entered upon installation of client
 - `mediaservers` - mediaservers which has access to a client
 - `service_enabled` - start netbackup, true or false?
+- `excludes` - array of excludes to put in exclude list
 
 #### Example usage
 
@@ -48,6 +49,7 @@ Sample definition:
         service_enabled => true,
         masterserver    => 'netbackup.xyz.com',
         mediaservers    => ['mediasrv1.xyz.com', 'mediasrv2.xyz.com'],
+        excludes        => ['/tmp', '/other/excluded/path'],
     }
 
 

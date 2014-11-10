@@ -6,8 +6,10 @@ describe 'netbackup::client' do
       :installer       => '/tmp/installer.expect',
       :version         => '7.6.0.1',
       :masterserver    => 'netbackup.xyz.com',
+      :mediaservers    => ['mediaserver1.xyz.com', 'mediaserver2.xyz.com'],
       :clientname      => 'spectest.xyz.com',
       :service_enabled => true,
+      :excludes        => ['/tmp'],
     }
   }
 
@@ -17,6 +19,13 @@ describe 'netbackup::client' do
       'version'      => '7.6.0.1',
       'masterserver' => 'netbackup.xyz.com',
       'clientname'   => 'spectest.xyz.com',
+    })
+    should contain_file("bp.conf").with({
+      'content' => /SERVER = netbackup.xyz.com/,
+      'content' => /CLIENT_NAME = spectest.xyz.com/,
+    })
+    should contain_file("exclude_list").with({
+      'content' => /\/tmp/,
     })
   end
 
