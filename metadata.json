@@ -1,8 +1,8 @@
 {
   "name": "ondmagi-netbackup",
   "version": "0.1.0",
-  "author": "ondmagi",
-  "summary": "NetBackup via puppet, client and server",
+  "author": "Andreas Skarmutsos Lindh",
+  "summary": "Puppet module for NetBackup, client and server",
   "license": "Apache 2.0",
   "source": "https://github.com/ondmagi/puppet-netbackup.git",
   "project_page": "https://github.com/ondmagi/puppet-netbackup",
