@@ -5,7 +5,8 @@
 
 Puppet + NetBackup. Currently in development, contributions are welcome. See [TODO](#todo)
 
-One of the goals of this module is _unfortunately_ to try to provide an installation method that does not rely on a package manager, but rather leverages the installation methods provided by the vendor. However, this does not exclude the possibility of an installation method where package managers provide the neccessay rpms/debs/pkgs.
+One of the goals of this module is _unfortunately_ to try to provide an installation method that does not rely on a package manager, but rather leverages the installation methods provided by the vendor.
+However, this does not exclude the possibility of an installation method where package managers provide the neccessay rpms/debs/pkgs, yet that feature is still to be implemented.
 
 ## TODO
 
