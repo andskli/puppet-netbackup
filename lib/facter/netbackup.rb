@@ -1,17 +1,30 @@
 Facter.add('netbackup_client_name') do
   setcode do
-    client_name = Facter::Util::Resolution.exec('/usr/openv/netbackup/bin/nbgetconfig CLIENT_NAME')
-    client_name.split[2]
+    if File.exist? '/usr/openv/netbackup/bin/nbgetconfig'
+      client_name = Facter::Util::Resolution.exec('/usr/openv/netbackup/bin/nbgetconfig CLIENT_NAME')
+      client_name.split[2]
+    elsif File.exist? '/usr/openv/netbackup/bp.conf'
+      client_name = Facter::Util::Resolution.exec('/bin/grep CLIENT_NAME /usr/openv/netbackup/bp.conf')
+      client_name.split[2]
+    end
   end
 end
 
+
 Facter.add('netbackup_serverlist') do
   setcode do
-    server_rows = Facter::Util::Resolution.exec('/usr/openv/netbackup/bin/nbgetconfig SERVER').split("\n")
-    servers = server_rows.map! { |x| x.split[2] }
-    servers
+    if File.exist? '/usr/openv/netbackup/bin/nbgetconfig'
+      server_rows = Facter::Util::Resolution.exec('/usr/openv/netbackup/bin/nbgetconfig SERVER').split("\n")
+      servers = server_rows.map! { |x| x.split[2] }
+      servers
+    elsif File.exist? '/usr/openv/netbackup/bp.conf'
+      server_rows = Facter::Util::Resolution.exec('/bin/grep SERVER /usr/openv/netbackup/bp.conf').split("\n")
+      servers = server_rows.map! { |x| x.split[2] }
+      servers
+    end	  
   end
 end
+
 
 # @todo Ugly code?
 Facter.add('netbackup_version') do
