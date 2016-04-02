@@ -19,7 +19,7 @@ class netbackup::client::install (
   }
 
   exec { 'run-netbackup-install':
-    command  => 'expect /tmp/install_netbackup_client.expect',
+    command  => "expect ${tmpinstaller}/install_netbackup_client.expect",
     path     => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
     require  => [Package['expect'], File['install_netbackup_client.expect']],
     unless   => "grep ${version} /usr/openv/netbackup/bin/version",
