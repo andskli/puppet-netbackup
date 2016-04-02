@@ -11,6 +11,7 @@ class netbackup::client (
   if versioncmp($version, $::netbackup_version) < 1 {
     notice("Installed version ${::netbackup_version} newer or equal to ${version}, not installing")
   }
+
   if versioncmp($version, $::netbackup_version) == 1 {
     notice ("Found NetBackup version: ${::netbackup_version}, have newer ${version} which I'll install using class netbackup::client::install")
     class { 'netbackup::client::install': }
@@ -38,6 +39,7 @@ class netbackup::client (
       hasrestart => false,
       hasstatus  => false,
       pattern    => 'bpcd',
+      provider   => init,
     }
   }
 
