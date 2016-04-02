@@ -3,10 +3,11 @@ class netbackup::client::install (
   $version            = $netbackup::client::version,
   $masterserver       = $netbackup::client::masterserver,
   $clientname         = $netbackup::client::clientname,
+  $tmpinstaller      =  $netbackup::client::tmpinstaller
 ){
 
   file { 'install_netbackup_client.expect':
-    path     => '/tmp/install_netbackup_client.expect',
+    path     => "${tmpinstaller}/install_netbackup_client.expect",
     owner    => 'root',
     group    => 'root',
     mode     => '0744',
