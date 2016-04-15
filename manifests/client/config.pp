@@ -24,7 +24,7 @@ class netbackup::client::config (
       hasstatus  => false,
       pattern    => 'bpcd',
       provider   => init,
-	  require    => File["bp.conf"]
+      require    => File['bp.conf']
     }
   }
 

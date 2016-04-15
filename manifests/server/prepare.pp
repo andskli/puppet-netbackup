@@ -3,11 +3,11 @@ class netbackup::server::prepare {
   # START Pre-checks
   include limits
   limits::limits { 'netbackup_nofile':
-    ensure          => present,
-    user            => '*',
-    limit_type      => 'nofile',
-    hard            => 65440,
-    soft            => 8000,
+    ensure     => present,
+    user       => '*',
+    limit_type => 'nofile',
+    hard       => 65440,
+    soft       => 8000,
   }
 
   sysctl { 'kernel.sem': value => '300  307200  32  1024', }
