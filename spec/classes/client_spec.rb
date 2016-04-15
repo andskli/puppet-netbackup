@@ -3,6 +3,7 @@ describe 'netbackup::client' do
 
   let(:params) {
     {
+      :tmpinstaller    => '/tmp',
       :installer       => '/tmp/installer.expect',
       :version         => '7.6.0.1',
       :masterserver    => 'netbackup.xyz.com',
@@ -12,6 +13,13 @@ describe 'netbackup::client' do
       :excludes        => ['/tmp', '/other/path'],
     }
   }
+
+  let(:facts) {
+    {
+      :netbackup_version => "7.5.0.0",
+    }
+  }
+
 
   it do
     should contain_class("netbackup::client::install").with({
@@ -97,10 +105,17 @@ describe 'netbackup::client::install' do
 
   let(:params) {
     {
+      :tmpinstaller    => '/tmp',
       :installer    => '/tmp/install_netbackup_client.expect',
       :version      => '7.6.0.1',
       :masterserver => 'netbackup.xyz.com',
       :clientname   => 'spectest.xyz.com',
+    }
+  }
+
+  let(:facts) {
+    {
+      :netbackup_version => "7.5.0.0",
     }
   }
 

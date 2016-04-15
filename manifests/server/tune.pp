@@ -41,184 +41,184 @@ class netbackup::server::tune (
   $fbureadblks                  = '512 128',
 ) {
 
-  file { "${sizedatabuffers_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${sizedatabuffers}",
+  file { $sizedatabuffers_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $sizedatabuffers,
   }
 
-  file { "${numberdatabuffers_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${numberdatabuffers}",
+  file { $numberdatabuffers_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $numberdatabuffers,
   }
 
-  file { "${sizedatabuffersdisk_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${sizedatabuffersdisk}",
+  file { $sizedatabuffersdisk_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $sizedatabuffersdisk,
   }
 
-  file { "${numberdatabuffersdisk_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${numberdatabuffersdisk}",
+  file { $numberdatabuffersdisk_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $numberdatabuffersdisk,
   }
 
-  file { "${sizedatabuffersft_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${sizedatabuffersft}",
+  file { $sizedatabuffersft_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $sizedatabuffersft,
   }
 
-  file { "${numberdatabuffersft_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${numberdatabuffersft}",
+  file { $numberdatabuffersft_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $numberdatabuffersft,
   }
 
-  file { "${cdnumberdatabuffers_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${cdnumberdatabuffers}",
+  file { $cdnumberdatabuffers_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $cdnumberdatabuffers,
   }
 
-  file { "${cdsizedatabuffers_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${cdsizedatabuffers}",
+  file { $cdsizedatabuffers_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $cdsizedatabuffers,
   }
 
   $cdwholeimagecopy_enable = $cdwholeimagecopy ? {
-    true          => 'present',
-    false         => 'absent',
-    default       => 'present',
+    true    => 'present',
+    false   => 'absent',
+    default => 'present',
   }
 
-  file { "${cdwholeimagecopy_path}":
-    ensure        => "${cdwholeimagecopy_enable}",
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
+  file { $cdwholeimagecopy_path:
+    ensure => $cdwholeimagecopy_enable,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
-  file { "${cdupdateinterval_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${cdupdateinterval}",
+  file { $cdupdateinterval_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $cdupdateinterval,
   }
 
-  file { "${ostcdbusyretrylimit_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${ostcdbusyretrylimit}",
+  file { $ostcdbusyretrylimit_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $ostcdbusyretrylimit,
   }
 
-  file { "${netbuffersz_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${netbuffersz}",
+  file { $netbuffersz_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $netbuffersz,
   }
 
-  file { "${netbufferszrest_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${netbufferszrest}",
+  file { $netbufferszrest_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $netbufferszrest,
   }
 
-  file { "${dpsproxydefaultrecvtmo_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${dpsproxydefaultrecvtmo}",
+  file { $dpsproxydefaultrecvtmo_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $dpsproxydefaultrecvtmo,
   }
 
-  file { "${dpsproxydefaultsendtmo_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${dpsproxydefaultsendtmo}",
+  file { $dpsproxydefaultsendtmo_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $dpsproxydefaultsendtmo,
   }
 
   $dpsproxynoexpire_enable = $dpsproxynoexpire ? {
-    true          => 'present',
-    false         => 'absent',
-    default       => 'present',
+    true    => 'present',
+    false   => 'absent',
+    default => 'present',
   }
 
-  file { "${dpsproxynoexpire_path}":
-    ensure        => "${dpsproxynoexpire_enable}",
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
+  file { $dpsproxynoexpire_path:
+    ensure => $dpsproxynoexpire_enable,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
-  file { "${maxentriesperadd_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${maxentriesperadd}",
+  file { $maxentriesperadd_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $maxentriesperadd,
   }
 
   $parentdelay_enable = $parentdelay ? {
-    true          => 'present',
-    false         => 'absent',
-    default       => 'present',
+    true    => 'present',
+    false   => 'absent',
+    default => 'present',
   }
 
-  file { "${parentdelay_path}":
-    ensure        => "${parentdelay_enable}",
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
+  file { $parentdelay_path:
+    ensure => $parentdelay_enable,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
   $childdelay_enable = $childdelay ? {
-    true          => 'present',
-    false         => 'absent',
-    default       => 'present',
+    true    => 'present',
+    false   => 'absent',
+    default => 'present',
   }
 
-  file { "${childdelay_path}":
-    ensure        => "${childdelay_enable}",
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
+  file { $childdelay_path:
+    ensure => $childdelay_enable,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
-  file { "${fbureadblks_path}":
-    ensure        => file,
-    owner         => 'root',
-    group         => 'root',
-    mode          => '0644',
-    content       => "${fbureadblks}",
+  file { $fbureadblks_path:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => $fbureadblks,
   }
 
 }
