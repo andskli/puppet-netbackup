@@ -3,15 +3,26 @@
   "version": "0.1.0",
   "author": "Andreas Skarmutsos Lindh",
   "summary": "Puppet module for NetBackup, client and server",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/andskli/puppet-netbackup.git",
   "project_page": "https://github.com/andskli/puppet-netbackup",
   "issues_url": "https://github.com/andskli/puppet-netbackup/issues",
+  "tags": ["netbackup", "backup"],
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs-stdlib","version_requirement":">= 4.7.0"},
     {"name":"saz/limits","version_requirement":">= 2.1.0"},
     {"name":"thias/sysctl","version_requirement":">= 1.0.0"},
     {"name":"spiette/selinux","version_requirement":">= 0.5.4"}
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": ["6.0", "7.0"]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": ["12.04", "14.04"]
+    }
   ]
 }
 
