@@ -6,6 +6,12 @@ class netbackup::client::config (
   $excludes          = $netbackup::client::excludes,
 ){
 
+  # Define the service provider
+  $service_provider = $facts['os']['family'] ? {
+    'RedHat'        => 'redhat',
+    default         => 'init',
+  }
+
   file { 'bp.conf':
     ensure  => file,
     path    => '/usr/openv/netbackup/bp.conf',
@@ -23,7 +29,7 @@ class netbackup::client::config (
       hasrestart => false,
       hasstatus  => false,
       pattern    => 'bpcd',
-      provider   => init,
+      provider   => $service_provider,
       require    => File['bp.conf']
     }
   }
