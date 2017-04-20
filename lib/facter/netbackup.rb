@@ -29,7 +29,7 @@ end
 # @todo Ugly code?
 Facter.add('netbackup_version') do
   setcode do
-    nbu_version = nil
+    nbu_version = '0.0.0'
 
     if File.exist?('/usr/openv/netbackup/bin/version')
       File.open('/usr/openv/netbackup/bin/version', 'r') do |file|
