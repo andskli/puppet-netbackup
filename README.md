@@ -1,5 +1,7 @@
 # puppet-netbackup  
 
+[![Build Status](https://travis-ci.org/andskli/puppet-netbackup.svg?branch=master)](https://travis-ci.org/andskli/puppet-netbackup)
+
 #### Table of Contents
 
 - [Module Description](#module-description)
