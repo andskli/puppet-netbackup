@@ -105,7 +105,9 @@ Only handles preparation for NetBackup Master/media installation for now, see `n
 
 ## Limitations and Known Issues
 
-Only tested on Linux (CentOS/Ubuntu) for now.
+The installer must be present (and reachable) on the Puppet Client. For most of the cases, The Netbackup Installation folder is Shared trhough NFS and mounted on the Nodes (May also leverage on autofs to automount that shared NFS).
+
+Only tested on Linux (RHEL/CentOS/Ubuntu) for now.
 
 ## Development
 I happily accept bug reports and pull requests via github,  
