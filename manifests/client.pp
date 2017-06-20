@@ -18,5 +18,4 @@ class netbackup::client (
     notice ("Found NetBackup version: ${::netbackup_version}, have newer ${version} which I'll install using class netbackup::client::install")
     class { 'netbackup::client::install': } -> class { 'netbackup::client::config': }
   }
-  
 }

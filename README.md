@@ -1,22 +1,40 @@
-# puppet-netbackup
+# puppet-netbackup  
 
+[![Build Status](https://travis-ci.org/andskli/puppet-netbackup.svg?branch=master)](https://travis-ci.org/andskli/puppet-netbackup)
 
-## Overview
+#### Table of Contents
 
-Puppet + NetBackup. Currently in development, contributions are welcome. See [TODO](#todo)
+- [Module Description](#module-description)
+  * [What netbackup affects](#what-netbackup-affects)
+  * [Setup Requirements](#setup-requirements)
+- [Classes](#classes)
+  * [Client](#client)
+    + [Example usage](#example-usage)
+  * [Server](#server)
+    + [Example usage](#example-usage-1)
+- [Facts](#facts)
+- [Limitations and Known Issues](#limitations-and-known-issues)
+- [Development](#development)
+- [TODO](#todo)
+- [Contributors](#contributors)
 
-One of the goals of this module is _unfortunately_ to try to provide an installation method that does not rely on a package manager, but rather leverages the installation methods provided by the vendor.
+## Module Description
+
+The netbackup module aims to automate the Netbackup Installation by leveraging the installation methods provided by the vendor.
 However, this does not exclude the possibility of an installation method where package managers provide the neccessay rpms/debs/pkgs, yet that feature is still to be implemented.
 
-## TODO
+### What netbackup affects
 
-- Server installation of master/media
-- Tuning/parameterizing of master/media
-- Policy creation/modification via puppet?
-- Server facts
-- Client facts
-- Client upgrades
-- ??
+Everything that is affected by the Interactive Netbackup Installation (creates /usr/openv and populates with the right content)
+
+### Setup Requirements
+
+netbackup requires:  
+
+- puppetlabs-stdlib (>= 4.7.0)
+- saz/limits (>= 2.1.0)
+- thias/sysctl (>= 1.0.0)
+- spiette/selinux (>= 0.5.4)
 
 ## Classes
 
@@ -48,13 +66,27 @@ Sample definition:
 
     class { 'netbackup::client':
         installer       => '/path/to_nfs_share/NetBackup_7.6.0.1_CLIENTS2/install',
-        version         => '7.6.0.1',
+        version         => '7.7.2',
         service_enabled => true,
         masterserver    => 'netbackup.xyz.com',
         mediaservers    => ['mediasrv1.xyz.com', 'mediasrv2.xyz.com'],
         excludes        => ['/tmp', '/other/excluded/path'],
     }
 
+The same configuration using Hiera,
+
+```yaml
+---
+netbackup::client::version:         '7.7.2'  
+netbackup::client::service_enabled: true  
+netbackup::client::masterserver:    'netbackup.xyz.com'
+netbackup::client::mediaservers:
+  - 'mediasrv1.xyz.com'
+  - 'mediasrv2.xyz.com'
+netbackup::client::excludes:
+  - '/tmp'
+  - '/other/excluded/path'
+```
 
 ### Server
 
@@ -71,15 +103,36 @@ Only handles preparation for NetBackup Master/media installation for now, see `n
 - `netbackup_serverlist` - returns a list of servers retreived from `/usr/openv/netbackup/bin/nbgetconfig`
 - `netbackup_version` - returns a string containing version information found in `/usr/openv/netbackup/bin/version`, `nil` if the file is not found or it does not contain a version string
 
+## Limitations and Known Issues
 
-## Limitations
+The installer must be present (and reachable) on the Puppet Client. For most of the cases, The Netbackup Installation folder is Shared trhough NFS and mounted on the Nodes (May also leverage on autofs to automount that shared NFS).
 
-Only tested on Linux (CentOS/Ubuntu) for now.
+Only tested on Linux (RHEL/CentOS/Ubuntu) for now.
 
 ## Development
+I happily accept bug reports and pull requests via github,  
+https://github.com/andskli/puppet-netbackup
 
-Standard GitHub workflow, i.e.
+- Fork it
+- Create a feature branch
+- Write a failing test
+- Write the code to make that test pass
+- Refactor the code
+- Submit a pull request
 
-1. Fork/branch
-2. Send PR
-3. Wait for response
+## TODO
+
+- Server installation of master/media
+- Tuning/parameterizing of master/media
+- Policy creation/modification via puppet?
+- Server facts
+- Client facts
+- Client upgrades
+- ??
+
+
+## Contributors
+
+The module is written and being mainly maintained by: 
+- [andskli](https://github.com/andskli) 
+- [stivesso](https://github.com/stivesso)
