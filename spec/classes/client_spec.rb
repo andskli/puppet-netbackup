@@ -17,11 +17,11 @@ describe 'netbackup::client' do
         }
       }
 
-      let(:facts) {
-        {
+      let(:facts) do
+        facts.merge({
           :netbackup_version => "7.5.0.0",
-        }
-      }
+        })
+      end
 
 
       it do
@@ -43,11 +43,11 @@ describe 'netbackup::client' do
 
       context 'with same version already installed' do
     
-       let(:facts) {
-         {
+       let(:facts) do
+         facts.merge({
            :netbackup_version => '7.6.0.1',
-         }
-       }
+         })
+       end
 
        let(:params) {
          {
@@ -67,11 +67,11 @@ describe 'netbackup::client' do
 
       context 'with newer version already installed' do
 
-        let(:facts) {
-          {
+        let(:facts) do
+          facts.merge({
             :netbackup_version => '7.6.0.3',
-          }
-        }
+          })
+        end
 
         let(:params) {
           {
@@ -87,11 +87,11 @@ describe 'netbackup::client' do
 
       context 'with older version already installed' do
 
-        let(:facts) {
-          {
-            :netbackup_version => "7.5.0.0",
-          }
-        }
+        let(:facts) do
+          facts.merge({
+            :netbackup_version => '7.5.0.0',
+          })
+        end
 
         it do
           should contain_service("netbackup-client").with({
@@ -116,11 +116,11 @@ describe 'netbackup::client' do
         }
       }
 
-      let(:facts) {
-        {
-          :netbackup_version => "7.5.0.0",
-        }
-      }
+      let(:facts) do
+        facts.merge({
+          :netbackup_version => '7.5.0.0',
+        })
+      end
 
       it do
         should contain_file('install_netbackup_client.expect').with({
