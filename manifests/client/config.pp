@@ -19,6 +19,7 @@ class netbackup::client::config (
     group   => 'root',
     mode    => '0644',
     content => template('netbackup/bp.conf.erb'),
+    notify  => Service['netbackup-client'],
   }
 
   # Only define netbackup init service if netbackup_version fact is set
