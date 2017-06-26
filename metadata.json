@@ -1,6 +1,6 @@
 {
   "name": "andskli-netbackup",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Andreas Skarmutsos Lindh",
   "summary": "Puppet module for NetBackup, client and server",
   "license": "Apache-2.0",
