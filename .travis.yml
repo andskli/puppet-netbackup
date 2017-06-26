@@ -4,42 +4,52 @@ bundler_args: --without development
 sudo: false
 
 rvm:
-    - 2.1.0
-    - ruby-head
+  - 2.1.0
+  - ruby-head
 
 script:
-    - "bundle install"
-    - "bundle exec rake validate"
-    - "bundle exec rake lint"
-    - "SPEC_OPTS='--format documentation' bundle exec rake spec"
+  - bundle install
+  - bundle exec rake validate
+  - bundle exec rake lint
+  - SPEC_OPTS='--format documentation' bundle exec rake spec
 
 env:
   matrix:
-    - PUPPET_GEM_VERSION="~> 3.1.0"
-    - PUPPET_GEM_VERSION="~> 3.2.0"
-    - PUPPET_GEM_VERSION="~> 3.3.0"
-    - PUPPET_GEM_VERSION="~> 3.4.0"
-    - PUPPET_GEM_VERSION="~> 3.5.0"
-    - PUPPET_GEM_VERSION="~> 3.6.0"
-    - PUPPET_GEM_VERSION="~> 3.7.0"
-    - PUPPET_GEM_VERSION="~> 3.8.0"
-    - PUPPET_GEM_VERSION="~> 3"
-    - PUPPET_GEM_VERSION="~> 4.0.0"
-    - PUPPET_GEM_VERSION="~> 4.1.0"
-    - PUPPET_GEM_VERSION="~> 4.2.0"
-    - PUPPET_GEM_VERSION="~> 4.3.0"
-    - PUPPET_GEM_VERSION="~> 4"
-    - PUPPET_GEM_VERSION="~> 4"
+  - PUPPET_GEM_VERSION="~> 3.1.0"
+  - PUPPET_GEM_VERSION="~> 3.2.0"
+  - PUPPET_GEM_VERSION="~> 3.3.0"
+  - PUPPET_GEM_VERSION="~> 3.4.0"
+  - PUPPET_GEM_VERSION="~> 3.5.0"
+  - PUPPET_GEM_VERSION="~> 3.6.0"
+  - PUPPET_GEM_VERSION="~> 3.7.0"
+  - PUPPET_GEM_VERSION="~> 3.8.0"
+  - PUPPET_GEM_VERSION="~> 3"
+  - PUPPET_GEM_VERSION="~> 4.0.0"
+  - PUPPET_GEM_VERSION="~> 4.1.0"
+  - PUPPET_GEM_VERSION="~> 4.2.0"
+  - PUPPET_GEM_VERSION="~> 4.3.0"
+  - PUPPET_GEM_VERSION="~> 4"
+  - PUPPET_GEM_VERSION="~> 4"
 
 matrix:
-    fast_finish: true
-    exclude:
-        - rvm: ruby-head
-        - rvm: 2.1.0
-          env: PUPPET_GEM_VERSION="~> 3.1.0"
-        - rvm: 2.1.0
-          env: PUPPET_GEM_VERSION="~> 3.2.0"
-        - rvm: 2.1.0
-          env: PUPPET_GEM_VERSION="~> 3.3.0"
-        - rvm: 2.1.0
-          env: PUPPET_GEM_VERSION="~> 3.4.0"
+  fast_finish: true
+  exclude:
+  - rvm: ruby-head
+  - rvm: 2.1.0
+    env: PUPPET_GEM_VERSION="~> 3.1.0"
+  - rvm: 2.1.0
+    env: PUPPET_GEM_VERSION="~> 3.2.0"
+  - rvm: 2.1.0
+    env: PUPPET_GEM_VERSION="~> 3.3.0"
+  - rvm: 2.1.0
+    env: PUPPET_GEM_VERSION="~> 3.4.0"
+
+deploy:
+  provider: puppetforge
+  user: andskli
+  on:
+    tags: true
+    all_branches: true
+  condition: "$PUPPET_VERSION = '~> 3.6.0'"
+  password:
+    secure: eUFLu2gqia3qtOy0kz5s5IU8l/8awKyABzvss5IbEyMuhSwsmo33y25DMsFHv5qYQS1sfAByyc3QFkcGAIu7Dpsmg69QoKjssE4/IexIZPywa3hNvMGRrRyKhWcPMkplbkAVUWYojrmHRqsdnjTcn2SnA8NrC1DhTH8AGiDZDdc=
