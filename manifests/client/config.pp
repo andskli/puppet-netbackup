@@ -30,7 +30,7 @@ class netbackup::client::config (
       hasstatus  => false,
       pattern    => 'bpcd',
       provider   => $service_provider,
-      require    => File['bp.conf']
+      subscribe  => File['bp.conf']
     }
   }
 
